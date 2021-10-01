@@ -1,0 +1,21 @@
+name: Shopify Lighthouse CI
+on: [push]
+jobs:
+    lhci:
+      name: Lighthouse
+      runs-on: ubuntu-latest
+      steps:
+      - uses: actions/checkout@v2
+      
+      - name: Download WebPageTest
+        run: npm install webpagetest -g
+      
+      - name: Lighthouse
+        uses: adarshgpt/lighthouse-ci-action@main
+        with:
+          app_id: "832ad0986accbfddcbb50c4f1132cf43"
+          app_password: "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"
+          store: "webpagetest-app.myshopify.com"
+          password:  "frawsk"
+          lhci_github_app_token: ${{ secrets.LHCI_GITHUB_APP_TOKEN }}
+          wpt_api_key: ${{secrets.WPT_API_KEY}}
